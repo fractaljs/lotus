@@ -38,7 +38,7 @@ const QuestionTray = ({
             initial={{ y: 0 }}
             animate={{ y: -20 }}
             transition={{ duration: 0.25 }}
-            className="rounded-full size-12 flex items-center justify-center bg-black/10 backdrop-blur-lg outline outline-zinc-500/10 shadow-lg cursor-pointer"
+            className="rounded-full p-8 size-12 flex items-center justify-center bg-black/10 backdrop-blur-lg outline outline-zinc-500/10 shadow-lg cursor-pointer"
           >
             <AnimatePresence initial={false} mode="popLayout">
               {isLLMResponding ? (
@@ -59,7 +59,7 @@ const QuestionTray = ({
                   exit={{ scale: 0.5, opacity: 0 }}
                   className="flex items-center justify-center"
                 >
-                  <Mic size={18} />
+                  <Mic size={32} />
                 </motion.div>
               )}
             </AnimatePresence>

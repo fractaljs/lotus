@@ -58,7 +58,7 @@ const MainView = ({ currentState }: { currentState: number }) => {
         return (
           <div
             key="view-1"
-            className="text-xl md:text-3xl font-medium text-center"
+            className="text-3xl md:text-5xl font-medium text-center"
             style={{
               color: "rgba(93, 102, 111, 0.4)",
             }}

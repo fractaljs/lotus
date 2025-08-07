@@ -87,7 +87,7 @@ export default function Home() {
     setAskingQuestion(false);
     setQuestions([
       "Why is the success rate so low?",
-      "The UPI success rate is 85% for the month, which is down by 5% from last month",
+      "Hey, can you tell me about the Success Rate for the month?",
     ]);
     setIsLLMResponding(true);
     await delay(4000);
@@ -106,7 +106,7 @@ export default function Home() {
     setQuestions([
       "Why?",
       "Why is the success rate so low?",
-      "The UPI success rate is 85% for the month, which is down by 5% from last month",
+      "Hey, can you tell me about the Success Rate for the month?",
     ]);
     await talk("Let me check that across PGs for you", "Want");
     await delay(400);
