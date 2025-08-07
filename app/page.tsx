@@ -57,7 +57,9 @@ export default function Home() {
   };
 
   const animate = async () => {
+    setCurrentState(0);
     setInLoop(true);
+
     setAskingQuestion(true);
     await talk(
       "Hey, can you tell me about the Success Rate for the month?",
@@ -71,27 +73,65 @@ export default function Home() {
       "Hey, can you tell me about the Success Rate for the month?",
     ]);
     setAskingQuestion(false);
-
-    await delay(2000);
+    await delay(4000);
+    setIsLLMResponding(false);
 
     setCurrentState(1);
     const audioFile = "/response-audio.mp3";
     console.log("About to play audio file:", audioFile);
     await playAudio(audioFile);
+    await delay(3000);
 
-    setIsLLMResponding(false);
-
+    setAskingQuestion(true);
     await talk("Why is the success rate so low?", "Rachel");
+    setAskingQuestion(false);
     setQuestions([
       "Why is the success rate so low?",
       "The UPI success rate is 85% for the month, which is down by 5% from last month",
     ]);
+    setIsLLMResponding(true);
+    await delay(4000);
+    setIsLLMResponding(false);
 
     setInLoop(true);
 
     await talk(
       "The UPI success rate is 85% for the month, which is down by 5% from last month",
-      "Rachel"
+      "Want"
+    );
+
+    setAskingQuestion(true);
+    await talk("Why so?", "Rachel");
+    setAskingQuestion(false);
+    setQuestions([
+      "Why?",
+      "Why is the success rate so low?",
+      "The UPI success rate is 85% for the month, which is down by 5% from last month",
+    ]);
+    await talk("Let me check that across PGs for you", "Want");
+    await delay(400);
+    setIsLLMResponding(true);
+    await delay(4000);
+    setIsLLMResponding(false);
+
+    setCurrentState(2);
+    // play the @SRIntnetTAbel.mp3 from the /assets folder here
+    const srIntentAudioFile = "/SRIntentTabel.mp3";
+    console.log("About to play SR Intent audio file:", srIntentAudioFile);
+    await playAudio(srIntentAudioFile);
+
+    await talk(
+      "Let me check the reason for the drop, I will check our logs and emails to check if there were any outages.",
+      "Want"
+    );
+
+    setIsLLMResponding(true);
+    await delay(1000);
+    setIsLLMResponding(false);
+
+    await talk(
+      "Right, HDFC Bank noticed a drop in the success rate this month that caused a drop in the overall success rate. The same was also communicated to the team via an email from HDFC Bank.",
+      "Want"
     );
   };
 

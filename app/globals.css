@@ -46,7 +46,7 @@ body {
 /* The class that applies the glow effect and animation */
 .glow-effect {
   position: absolute;
-  bottom: 0;
+  bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
   width: 150%;

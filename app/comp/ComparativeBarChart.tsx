@@ -56,6 +56,15 @@ export const ComparativeBarChart = () => {
                   73%
                 </motion.div>
               </motion.div>
+              {/* December marker */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.3 }}
+                className="absolute -bottom-8 w-full text-center text-white/70 text-sm font-medium"
+              >
+                December
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
@@ -97,6 +106,15 @@ export const ComparativeBarChart = () => {
                 19%
               </motion.div>
             )} */}
+          </motion.div>
+          {/* January marker */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.3 }}
+            className="absolute -bottom-8 w-full text-center text-white/70 text-sm font-medium"
+          >
+            January
           </motion.div>
         </motion.div>
       </div>

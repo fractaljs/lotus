@@ -1,5 +1,5 @@
 import { Mic } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, scale } from "motion/react";
 import { AnimatedGlowCard } from "./comp/AnimatedGlow";
 import { WaveLoader } from "./comp/WaveLoader";
 
@@ -33,19 +33,36 @@ const QuestionTray = ({
               scale: 1.02,
             }}
             whileTap={{
-              scale: 0.95,
+              scale: 0.85,
             }}
-            animate={{
-              y: -30,
-            }}
-            exit={{
-              scale: 0,
-              y: 100,
-            }}
+            initial={{ y: 0 }}
+            animate={{ y: -20 }}
             transition={{ duration: 0.25 }}
-            className="rounded-full p-5 bg-black/10 backdrop-blur-lg outline outline-zinc-500/10 shadow-lg cursor-pointer"
+            className="rounded-full size-12 flex items-center justify-center bg-black/10 backdrop-blur-lg outline outline-zinc-500/10 shadow-lg cursor-pointer"
           >
-            {isLLMResponding ? <WaveLoader /> : <Mic size={20} />}
+            <AnimatePresence initial={false} mode="popLayout">
+              {isLLMResponding ? (
+                <motion.div
+                  key="wave-loader"
+                  initial={{ scale: 0.5, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.5, opacity: 0 }}
+                  className="flex items-center justify-center"
+                >
+                  <WaveLoader size="lg" />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="mic"
+                  initial={{ scale: 0.5, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.5, opacity: 0 }}
+                  className="flex items-center justify-center"
+                >
+                  <Mic size={18} />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.button>
         </AnimatePresence>
       </div>

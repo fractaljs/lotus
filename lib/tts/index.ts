@@ -11,7 +11,8 @@ const VOICE_MAP: Record<string, string> = {
   'Elli': 'MF3mGyEYCl7XYWbV9V6O',
   'Freya': 'jsCqWAovK2LkecY7zXl4',
   'Grace': 'oWAxZDx7w5VEj9dCyTzz',
-  'Sam': 'yoZ06aMxZJJ28mfd3POQ'
+  'Sam': 'yoZ06aMxZJJ28mfd3POQ',
+  'Want': 'UgBBYS2sOqTuMpoF3BR0'
 };
 
 export async function textToSpeech(
