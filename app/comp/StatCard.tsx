@@ -27,7 +27,7 @@ const StatCard = ({
         <div className="text-3xl text-[var(--foreground)]">{value}</div>
         {showDelta && (
           <div
-            className="text-base"
+            className="text-base font-medium"
             style={{ color: kind === "down" ? "#BE553D" : "green" }}
           >
             {delta}

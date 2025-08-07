@@ -88,7 +88,7 @@ const View2 = () => {
     payload: any[];
     label: string;
   } | null>(null);
-  const DELAY_TO_SHOW_TABLE = 18000;
+  const DELAY_TO_SHOW_TABLE = 20000;
   const DELAY_TO_SHOW_TOOLTIP = 2000; // Variable for tooltip delay duration
 
   // Find the minimum point in the chart data
@@ -211,13 +211,13 @@ const Table = () => {
         <table className="w-full">
           <thead>
             <tr>
-              <th className="px-4 py-3 text-left text-sm font-medium text-white/90 uppercase tracking-wide">
+              <th className="px-4 py-3 text-start text-base font-medium text-white/90 uppercase tracking-wide">
                 Payment Gateway
               </th>
-              <th className="px-4 py-3 text-left text-sm font-medium text-white/90 uppercase tracking-wide">
+              <th className="px-4 py-3 text-start text-base font-medium text-white/90 uppercase tracking-wide">
                 Success Rate
               </th>
-              <th className="px-4 py-3 text-left text-sm font-medium text-white/90 uppercase tracking-wide">
+              <th className="px-4 py-3 text-start text-base font-medium text-white/90 uppercase tracking-wide">
                 Change
               </th>
             </tr>
@@ -231,13 +231,13 @@ const Table = () => {
                 transition={{ duration: 0.7, delay: index * 0.2 }}
                 className="border-t border-white/20"
               >
-                <td className="px-4 py-3 text-sm text-white/90 font-medium">
+                <td className="px-4 py-3 text-base text-white/90 font-medium">
                   {row.gateway}
                 </td>
-                <td className="px-4 py-3 text-sm text-white/90">
+                <td className="px-4 py-3 text-base text-white/90">
                   {row.successRate}
                 </td>
-                <td className="px-4 py-3 text-sm">
+                <td className="px-4 py-3 text-base">
                   <span
                     className={`font-medium ${
                       row.change.startsWith("-")

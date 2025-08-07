@@ -126,7 +126,7 @@ export default function Home() {
     );
 
     setIsLLMResponding(true);
-    await delay(1000);
+    await delay(3000);
     setIsLLMResponding(false);
 
     await talk(
