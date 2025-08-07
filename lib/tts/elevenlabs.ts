@@ -1,13 +1,13 @@
-import { ElevenLabs } from "@elevenlabs/elevenlabs-js";
+import { ElevenLabsClient } from "@elevenlabs/elevenlabs-js";
 import { TTSConfig, TTSOptions, TTSResponse } from "./types";
 
 export class ElevenLabsService {
-  private client: ElevenLabs;
+  private client: ElevenLabsClient;
   private config: TTSConfig;
 
   constructor(config: TTSConfig) {
     this.config = config;
-    this.client = new ElevenLabs({
+    this.client = new ElevenLabsClient({
       apiKey: config.apiKey,
     });
   }
@@ -24,16 +24,33 @@ export class ElevenLabsService {
 
       const response = await this.client.textToSpeech.convert(voiceId, {
         text,
-        model_id: modelId,
-        voice_settings: {
+        modelId: modelId,
+        voiceSettings: {
           stability: options.stability ?? 0.5,
-          similarity_boost: options.similarityBoost ?? 0.5,
+          similarityBoost: options.similarityBoost ?? 0.5,
           style: options.style ?? 0.0,
-          use_speaker_boost: options.useSpeakerBoost ?? true,
+          useSpeakerBoost: options.useSpeakerBoost ?? true,
         },
       });
 
-      const audioBuffer = await response.arrayBuffer();
+      const chunks: Uint8Array[] = [];
+      const reader = response.getReader();
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        chunks.push(value);
+      }
+
+      const totalLength = chunks.reduce((acc, chunk) => acc + chunk.length, 0);
+      const audioBuffer = new ArrayBuffer(totalLength);
+      const uint8Array = new Uint8Array(audioBuffer);
+      let offset = 0;
+
+      for (const chunk of chunks) {
+        uint8Array.set(chunk, offset);
+        offset += chunk.length;
+      }
 
       return {
         audio: audioBuffer,
@@ -51,7 +68,7 @@ export class ElevenLabsService {
 
   async getVoices() {
     try {
-      const response = await this.client.voices.getAll();
+      const response = await this.client.voices.search();
       return response.voices;
     } catch (error) {
       console.error("Failed to fetch voices:", error);
